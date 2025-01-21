@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import banhang.banhang.DAO.UserDAO;
+import banhang.banhang.model.User;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,35 +43,25 @@ public class HomeController {
     @Autowired 
     ServletContext context;
 
+    @Autowired
+    UserDAO userDAO;
+
     @ModelAttribute("now")
     public Date getDate(){
         return new Date();
     }
-    
+
+    @ResponseBody
     @GetMapping("about")
-    public String about(Model model) {
-        return "home/about";
+    public  List<User> about(Model model) {
+        List<User> users =  userDAO.findAll();
+        return users;
     }
     
     @GetMapping("")
     public String index(Model model) {
-        session.setAttribute("uname", "Tran VAN C");
-        Staff staff =  new Staff();
-        staff.pass = "12345678";
-        staff.uname= "nguyen van b";
-        staff.photo= "image.png";
-        staff.mark = 5;
-
-        List list = new ArrayList<>();
-        list.add(staff);
-        list.add(staff);
-        list.add(staff);
-        list.add(staff);
-    
-        model.addAttribute("list", list);
-
-        model.addAttribute("staff", staff);
-        model.addAttribute("name", " &lt &copy; Nguyen Van A");
+        List<User> users =  userDAO.findAll();
+        model.addAttribute("users", users);
         return "home/index";
     }
     @GetMapping("/form/{id}")

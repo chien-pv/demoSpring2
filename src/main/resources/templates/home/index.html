@@ -6,24 +6,24 @@
     <body>
         <header th:replace="~{/layouts/nav}">
         </header>
-        <main th:with="abc=${staff.pass}" class="container">
+        <main class="container">
             <h1>Quản Lý User</h1>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Mark</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Photo</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <th:block th:each="item, st : ${list}" th:object="${item}">
+                    <th:block th:each="item, st : ${users}" th:object="${item}">
                         <tr>
                             <td th:text="${st.count}">Mark</td>
-                            <td th:text="*{uname}">Mark</td>
-                            <td th:text="*{mark}">Otto</td>
+                            <td th:text="*{name}">Mark</td>
+                            <td th:text="*{email}">Otto</td>
                             <td th:text="*{photo}">@mdo</td>
                             <td>
                                 <button type="button"
