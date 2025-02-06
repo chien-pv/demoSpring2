@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="~{/layouts/header}">
+        <title>Home</title>
+    </head>
+    <body>
+        <header th:replace="~{/layouts/nav}">
+        </header>
+        <main class="container">
+            <h1>Create Product</h1>
+            <div class="alert alert-danger" role="alert">
+                <i th:text="${message}"></i>
+            </div>
+            <form th:object="${product}" method="post"
+                action="/products/create">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input th:field="*{name}" type="text" class="form-control">
+                    <i class="text-danger" th:errors="*{name}"></i>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input th:field="*{description}" type="text"
+                        class="form-control">
+                    <i class="text-danger" th:errors="*{description}"></i>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Price</label>
+                    <input th:field="*{price}" type="text" class="form-control">
+                    <i class="text-danger" th:errors="*{price}"></i>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Url image</label>
+                    <input th:field="*{image_url}" type="text"
+                        class="form-control">
+                    <i class="text-danger" th:errors="*{image_url}"></i>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <input th:field="*{status}" type="text"
+                        class="form-control">
+                    <i class="text-danger" th:errors="*{status}"></i>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </main>
+        <div th:replace="~{/layouts/footer}">
+        </div>
+    </body>
+</html>

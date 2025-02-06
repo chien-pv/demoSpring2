@@ -53,7 +53,7 @@ public class HomeController {
 
     @ResponseBody
     @GetMapping("about")
-    public  List<User> about(Model model) {
+    public List<User> about(Model model) {
         List<User> users =  userDAO.findAll();
         return users;
     }
