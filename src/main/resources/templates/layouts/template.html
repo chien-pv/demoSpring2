@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html th:fragment="view(content, title )" lang="en">
+    <head th:replace="~{/layouts/header.html::head(${title})}">
+        <title>Home</title>
+    </head>
+    <body>
+        <header th:replace="~{/layouts/nav}">
+        </header>
+        <main th:replace="${content}" class="container">
+        </main>
+        <div th:replace="~{/layouts/footer}">
+        </div>
+    </body>
+</html>

@@ -1,43 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head th:replace="~{/layouts/header}">
-        <title>Home</title>
-    </head>
-    <body>
-        <header th:replace="~{/layouts/nav}">
-        </header>
-        <main class="container">
-            <h1>Quản Lý User</h1>
-            <table class="table">
-                <thead>
+<div th:replace="~{/layouts/template.html::view(~{::main}, 'Home Page')}"
+    lang="en">
+    <main class="container">
+        <h1>Quản Lý User</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="item, st : ${users}" th:object="${item}">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Photo</th>
-                        <th scope="col">Action</th>
+                        <td th:text="${st.count}">Mark</td>
+                        <td th:text="*{name}">Mark</td>
+                        <td th:text="*{email}">Otto</td>
+                        <td th:text="*{photo}">@mdo</td>
+                        <td>
+                            <button type="button"
+                                class="btn btn-outline-danger">Del</button>
+                            <button type="button"
+                                class="btn btn-outline-warning">Edit</button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <th:block th:each="item, st : ${users}" th:object="${item}">
-                        <tr>
-                            <td th:text="${st.count}">Mark</td>
-                            <td th:text="*{name}">Mark</td>
-                            <td th:text="*{email}">Otto</td>
-                            <td th:text="*{photo}">@mdo</td>
-                            <td>
-                                <button type="button"
-                                    class="btn btn-outline-danger">Del</button>
-                                <button type="button"
-                                    class="btn btn-outline-warning">Edit</button>
-                            </td>
-                        </tr>
-                    </th:block>
-
-                </tbody>
-            </table>
-        </main>
-        <div th:replace="~{/layouts/footer}">
-        </div>
-    </body>
-</html>
+                </th:block>
+            </tbody>
+        </table>
+    </main>
+</div>

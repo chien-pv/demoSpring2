@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -27,17 +28,20 @@ import org.springframework.web.multipart.MultipartFile;
 
 import banhang.banhang.DAO.UserDAO;
 import banhang.banhang.model.User;
+import banhang.banhang.service.CookieService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
-
-
 @Controller
 public class HomeController {
+
+    @Qualifier("CS1")
+    @Autowired
+    CookieService cookieService ;
+
     @Autowired
     HttpSession session;
     @Autowired 
@@ -51,11 +55,11 @@ public class HomeController {
         return new Date();
     }
 
-    @ResponseBody
     @GetMapping("about")
-    public List<User> about(Model model) {
-        List<User> users =  userDAO.findAll();
-        return users;
+    public String about(Model model) {
+        System.out.println(cookieService.name);
+        cookieService.creatCookie(null, 0);
+        return "home/about";
     }
     
     @GetMapping("")
